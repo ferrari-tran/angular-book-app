@@ -1,0 +1,74 @@
+<div class="flex justify-center h-screen">
+  <form (ngSubmit)="submit()" class="p-4 rounded-lg border m-auto w-[320px]" #myForm="ngForm">
+    <h1 class="text-center text-xl">Register</h1>
+    <div class="my-5 w-full">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="p-2 rounded w-full border"
+        id="email"
+        placeholder="Email address"
+        [(ngModel)]="form.email"
+        #email="ngModel"
+        required
+      />
+    </div>
+    <div
+      class="px-4 py-2 bg-red-100 text-red-700 rounded"
+      *ngIf="email.invalid && email.dirty && email.touched"
+    >
+      Email field must be valid
+    </div>
+    <div class="my-5 w-full">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="p-2 rounded w-full border"
+        id="password"
+        placeholder="Password"
+        [(ngModel)]="form.password"
+        #password="ngModel"
+        required
+      />
+    </div>
+    <div
+      class="px-4 py-2 bg-red-100 text-red-700 rounded"
+      *ngIf="password.invalid && password.dirty && password.touched"
+    >
+      Password field must be valid
+    </div>
+    <div class="my-5 w-full">
+      <label for="confirm_password">Confirm Password</label>
+      <input
+        type="password"
+        name="confirm_password"
+        class="p-2 rounded w-full border"
+        id="confirm_password"
+        placeholder="Confirm Password"
+        [(ngModel)]="form.confirmPassword"
+        #confirmPassword="ngModel"
+      />
+    </div>
+    <div
+      class="px-4 py-2 bg-red-100 text-red-700 rounded"
+      *ngIf="
+        confirmPassword.invalid &&
+        confirmPassword.dirty && confirmPassword.touched
+      "
+    >
+      Password field must be valid
+    </div>
+    <div class="my-5 w-full">
+      <button
+        type="submit"
+        [disabled]="myForm.form.invalid"
+        class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded cursor-pointer"
+      >
+        <ng-container *ngIf="isLoading()"> Loading... </ng-container>
+        <ng-container *ngIf="!isLoading()"> Submit </ng-container>
+      </button>
+    </div>
+  </form>
+</div>

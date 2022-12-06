@@ -1,0 +1,23 @@
+<li class="book p-4 border rounded-md h-full mx-4 flex">
+  <img class="cover mr-4 block h-auto" [src]="book.image" [alt]="book.name" width="100" />
+  <div>
+    <p class="title text-xl font-bold">
+      {{ book.name | titlecase }} by {{ book.author }}
+    </p>
+    <p class="amount">{{ book.amount | currency : "CAD" }}</p>
+    <button
+      *ngIf="!isInCart"
+      (click)="addToCart()"
+      class="py-2 px-6 bg-yellow-500 rounded-sm cursor-pointer font-bold mt-8"
+    >
+      Add to Cart
+    </button>
+    <button
+      *ngIf="isInCart"
+      (click)="removeFromCart()"
+      class="py-2 px-6 bg-gray-300 rounded-sm cursor-pointer font-bold mt-8"
+    >
+      Remove from Cart
+    </button>
+  </div>
+</li>
